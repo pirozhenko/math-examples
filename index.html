@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>softengi</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./dist/assets/css/main.css">
+</head>
+<body>
+
+	<ul class="tabs" data-tabs id="example-tabs">
+		  <li class="tabs-title is-active js-title-tabs1">
+		  	<a href="#panel1">Установка</a>
+		  </li>
+		  <li class="tabs-title js-title-tabs2">
+		  	<a href="#panel2">Проверка</a>
+		  </li>
+	</ul>
+
+
+	<div class="tabs-content" data-tabs-content="example-tabs">
+
+	  <div class="tabs-panel is-active js-tabs1" id="panel1">
+	    <label>Сложение
+	    	<input type="checkbox" class="js-add">
+	    </label>
+
+	    <label>Вычитание
+	    	<input type="checkbox" class="js-sub">
+	    </label>
+
+	    <label>Умножение
+	    	<input type="checkbox" class="js-mult">
+	    </label>
+
+	    <label>Деление
+	    	<input type="checkbox" class="js-dev">
+	    </label>
+	    <label>Колличество примеров
+				<input type="number" min="5" max="100" value="5" step="5" class="js-count-examples">
+	    </label>
+	    <button class="success button js-btn">Нажми на меня</button>
+	  </div>
+
+
+	  <div class="tabs-panel js-tabs2" id="panel2">
+	    <div class="tabs__panel-example js-panel-example"></div>
+	    <input type="tel" class="js-panel-input-answer" placeholder="Введите Ваш ответ">
+
+	    <div class="tabs__panel-answer js-panel-answer"></div>
+
+	    <div class="tabs__panel-true js-panel-true"></div>
+	    <div class="tabs__panel-false js-panel-false"></div>
+	  </div>
+</div>
+<!--  -->
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+
+
+    <script src="/assets/js/foundation/foundation.core.js"></script>
+    <script src="/assets/js/foundation/foundation.util.mediaQuery.js"></script>
+    <!-- <script src="/assets/js/foundation/foundation.util.box.js"></script> -->
+    <script src="/assets/js/foundation/foundation.util.keyboard.js"></script>
+    <!-- <script src="/assets/js/foundation/foundation.util.motion.js"></script> -->
+    <script src="/assets/js/foundation/foundation.util.timerAndImageLoader.js"></script>
+    <script src="/assets/js/foundation/foundation.tabs.js"></script>
+    <script src="/assets/js/foundation/foundation.tooltip.js"></script>
+    <script>
+    	$(document).foundation();
+    </script>
+	<script src="/assets/js/main.js"></script>
+</<body>
+	
+</body>
+</html>
