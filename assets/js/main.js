@@ -1,214 +1,233 @@
 var app = {
-  settings: {
-    count:         document.querySelector('.js-count-examples'),
-    example:       document.querySelector('.js-panel-example'),
-    answerPanel:   document.querySelector('.js-panel-answer'),
-    add:           document.querySelector('.js-add'),
-    sub:           document.querySelector('.js-sub'),
-    mult:          document.querySelector('.js-mult'),
-    dev:           document.querySelector('.js-dev'),
-    key:           document.querySelector('.js-btn'),
-    arrInput:      [],
-    panel:         document.querySelector('.js-panel-input-answer'),
-    tab1:          document.querySelector('.js-tabs1'),
-    titleTab1:     document.querySelector('.js-title-tabs1'),
-    tab2:          document.querySelector('.js-tabs2'),
-    titleTab2:     document.querySelector('.js-title-tabs2'),
-    panelTrue:     document.querySelector('.js-panel-true'),
-    panelFalse:    document.querySelector('.js-panel-false'),
-    countTrue:     1,
-    countFalse:    1,
-    msgAnswer:     'Ваш ответ: ',
-    msgCountTrue:  'Правильных всего: ',
-    msgCountFalse: 'Неправельных всего: ',
-    res:           ' '
-  },
 
-  expression: function (first, second, sign) {
-    var exampleExpr   = first + sign + second + ' = ?',
-        example       = this.settings.example;
-    example.innerHTML = exampleExpr;
-    console.log(exampleExpr);
-  },
+  currentExample: {},
+  history: [],
+  types: [],
+  correctCount: 0,
+  incorrectCount: 0,
+  inputAnswer: null,
 
-  addFunc: function () {
-    var first   = Math.round (Math.random() * 50),
-        second  = Math.round (Math.random() * 50),
-        answer  = first + second,
-        sign    = ' + ';
+  generateExample: function(type) {
+    var example = {};
 
-    app.expression(first, second, sign);
-    app.settings.res = answer;
-  },
+    if (type == 'addition') {
 
-  multFunc: function () {
-    var first   = Math.round (Math.random() * 20),
-        second  = Math.round (Math.random() * 5),
-        answer  = first * second;
-        sign    = ' * ';
+      example = {
+        "firstNumber": Math.round (Math.random() * 50),
+        "secondNumber":  Math.round (Math.random() * 50),
+        "type": type,
+        "sign": '+'
+      };
 
-    app.expression(first, second, sign);
-    app.settings.res = answer;
-  },
+    } else if (type == 'subtraction') {
 
-  devFunc: function () {
-    var first   = Math.round (Math.random() * 100),
-        second  = Math.round (Math.random() * 100),
-        answer  = first / second,
-        sign    = ' / ';
-
-    app.expression(first, second, sign);
-    app.settings.res = answer;
-  },
-
-  subFunc: function () {
-    var first   = Math.round (Math.random() * 100),
-        second  = Math.round (Math.random() * 20),
-        answer  = first - second,
-        sign    = ' - ';
-
-    app.expression(first, second, sign);
-    app.settings.res = answer;
-  },
-
-  getChar: function (event) {
-    var panel         = this.settings.panel,
-        answerPanel   = this.settings.answerPanel,
-        panelTrue     = this.settings.panelTrue,
-        panelFalse    = this.settings.panelFalse,
-        msgCountTrue  = this.settings.msgCountTrue,
-        msgCountFalse = this.settings.msgCountFalse,
-        msgAnswer     = this.settings.msgAnswer
-
-      if (event.which == null) {
-        if (event.keyCode < 32) {
-          return null;
-        }else {
-          return String.fromCharCode(event.keyCode); // IE
-        }
+      example = {
+        "firstNumber": Math.round (Math.random() * 80),
+        "secondNumber":  Math.round (Math.random() * 20),
+        "type": type,
+        "sign": '-'
       }
 
-      if (event.charCode == 13) {
-        //вывод ответа в строку при нажатии на enter
-        answerPanel.innerHTML = 'Ваш ответ: ' + panel.value;
-        //если ответ пользователя ревен ответу на пример
-        if (panel.value == app.settings.res ) {
-          //вывод сообщения и колличества правельных ответов
-          panelTrue.innerHTML = msgCountTrue + this.settings.countTrue;
-          this.settings.countTrue++;
+    } else if (type == 'multiplication') {
 
-          } else {
-            //вывод сообщения и колличества неправельных ответов
-            panelFalse.innerHTML = msgCountFalse + this.settings.countFalse;
-            this.settings.countFalse++;
-          }
-          //после нажатия на enter строка обнуляется
-          panel.value = '';
+      example = {
+        "firstNumber": Math.round (Math.random() * 20),
+        "secondNumber":  Math.round (Math.random() * 5),
+        "type": type,
+        "sign": '*'
       }
 
-      if (event.which != 0 && event.charCode != 0) {
-        if (event.which < 32) {
-          return null;
-        } else {
-          return String.fromCharCode(event.which);
-        }
-      }
+    } else if (type == 'division') {
 
-      return null;
-  },
+      var max = 100,
+          min = 20;
 
-  init: function () {
+           do {
+              var first   = Math.floor(Math.floor(Math.random()*(max-min+1)+min) / 2) * 2,
+                  second  = Math.floor(Math.floor(Math.random()*(min-1+1)+1) / 2) * 2;
 
-    var add      = this.settings.add,
-        sub      = this.settings.sub,
-        mult     = this.settings.mult,
-        dev      = this.settings.dev,
-        key      = this.settings.key,
-        count    = this.settings.count,
-        
-        tab1     = this.settings.tab1,
-        titleTab1= this.settings.titleTab1,
-        tab2     = this.settings.tab2,
-        titleTab2= this.settings.titleTab2,
-
-        addFunc  = this.addFunc,
-        subFunc  = this.subFunc,
-        multFunc = this.multFunc,
-        devFunc  = this.devFunc,
-        arrInput = this.settings.arrInput;
-
-
-        arrInput.push(this.settings.add, this.settings.sub, this.settings.mult, this.settings.dev);
-
-        key.addEventListener("click", function(e) {
-
-          tab1.removeClass('is-active');
-          titleTab1.removeClass('is-active');
-
-          tab2.addClass('is-active');
-          titleTab2.addClass('is-active');
-
-          var countAll = 0;
-
-          var arrInputChecked = [];
-
-          for (var i = 0; i < count.value; i++) {
-
-            for (var j = 0; j < arrInput.length; j++) {
-
-             if( arrInput[j].checked ) {
-
-                var del = arrInput[j].className.substr(3);
-                arrInputChecked.push(del + 'Func()');
-
+              if(second == 0) {
+               second = 1;
               }
-            }
+           } while(first % second);
 
-            var rand = Math.floor ( Math.random() * arrInputChecked.length);
-            eval(arrInputChecked[rand]);
+       example = {
+        "firstNumber": first,
+        "secondNumber":  second,
+        "type": type,
+        "sign": '/'
+       }
+      
+    }
 
-            countAll += 1;
+    return example;
 
-          }
-          console.log(countAll);
-        });
+  },
 
-      this.settings.panel.onkeypress = function(e) {
-      e = e || event;
+  checkResult: function(exampleObj) {
+    var inputValue = this.inputAnswer.value,
+      eObj = exampleObj,
+      type = eObj.type,
+      correctCountBox = document.querySelector('.js-correctCount'),
+      incorrectCountBox =  document.querySelector('.js-incorrectCount');
 
-      if (e.ctrlKey || e.altKey || e.metaKey) {
-        return
-      };
-      var chr = app.getChar(e);
-      if (chr == null) {
-        return;
-      };
-      if (chr < '0' || chr > '9') {
-        return false;
+    if (type == 'addition') {
+      
+      if (eObj.firstNumber + eObj.secondNumber == inputValue) {
+        eObj.correct = true;
+        this.correctCount += 1;
+        correctCountBox.innerHTML = this.correctCount;
+      } else {
+        eObj.correct = false;
+        this.incorrectCount += 1;
+        incorrectCountBox.innerHTML = this.incorrectCount;
       }
-    };
 
-    Element.prototype.hasClass = function (className) {
-        return new RegExp(' ' + className + ' ').test(' ' + this.className + ' ');
-    };
+    } else if (type == 'subtraction') {
 
-    Element.prototype.addClass = function (className) {
-        if (!this.hasClass(className)) {
-            this.className += ' ' + className;
+      if (eObj.firstNumber - eObj.secondNumber == inputValue) {
+        eObj.correct = true;
+        this.correctCount += 1;
+        correctCountBox.innerHTML = this.correctCount;
+      } else {
+        eObj.correct = false;
+        this.incorrectCount += 1;
+        incorrectCountBox.innerHTML = this.incorrectCount;
+      }
+
+    } else if (type == 'multiplication') {
+
+      if (eObj.firstNumber * eObj.secondNumber == inputValue) {
+        eObj.correct = true;
+        this.correctCount += 1;
+        correctCountBox.innerHTML = this.correctCount;
+      } else {
+        eObj.correct = false;
+        this.incorrectCount += 1;
+        incorrectCountBox.innerHTML = this.incorrectCount;
+      }
+    
+    } else if (type == 'division') {
+      if (eObj.firstNumber / eObj.secondNumber == inputValue) {
+        eObj.correct = true;
+        this.correctCount += 1;
+        correctCountBox.innerHTML = this.correctCount;
+      } else {
+        eObj.correct = false;
+        this.incorrectCount += 1;
+        incorrectCountBox.innerHTML = this.incorrectCount;
+      }
+    }
+
+    eObj.userAnswer = inputValue;
+
+    this.history.push(eObj);
+
+  },
+
+  showExample: function(exampleObj) {
+
+    var exampleBox = document.querySelectorAll('.js-panel-example')[0];
+
+    exampleBox.innerHTML = exampleObj.firstNumber +' '+ exampleObj.sign +' '+ exampleObj.secondNumber +' = ?';
+
+  },
+
+  init: function() {
+
+    var that = this;
+    var generateBtnFirst = document.querySelectorAll('.js-generate')[0];
+    var generateBtnNext = document.querySelectorAll('.js-next')[0];
+
+    this.currentIndex = 0;
+    this.inputAnswer = document.querySelector('.js-answerField');
+    this.answerUser = document.querySelector('.js-answerFieldView');
+
+    generateBtnFirst.onclick = function() {
+
+      that.generalCount = document.querySelector('.js-count-examples').value;
+
+      var checkboxes = document.querySelectorAll('.js-exampleType');
+
+      for (var i = 0; i <= checkboxes.length - 1; i++) {
+        if (checkboxes[i].checked) {
+          that.types.push(checkboxes[i].value)
         }
-        return this;
-    };
+      }
 
-    Element.prototype.removeClass = function (className) {
-        var newClass = ' ' + this.className.replace(/[\t\r\n]/g, ' ') + ' ';
-        if (this.hasClass(className)) {
-            while (newClass.indexOf( ' ' + className + ' ') >= 0) {
-                newClass = newClass.replace(' ' + className + ' ', ' ');
+      var typeToGenerate = Math.floor ( Math.random() * that.types.length);
+      
+      that.currentExample = that.generateExample( that.types[typeToGenerate]);
+
+      that.showExample(that.currentExample)
+
+      that.currentIndex += 1;
+
+    }
+
+    generateBtnNext.onclick = function() {
+
+      var history = that.history;
+
+      that.answerUser.innerHTML = 'Your answer is ' + that.inputAnswer.value;
+
+      if (that.inputAnswer.value != '') {
+        that.checkResult(that.currentExample);
+
+        if (that.currentIndex < that.generalCount) {
+          var typeToGenerate = Math.floor ( Math.random() * that.types.length);
+        
+          that.currentExample = that.generateExample( that.types[typeToGenerate]);
+
+          that.showExample(that.currentExample)
+          that.inputAnswer.value = '';
+
+          that.currentIndex += 1;
+
+
+        } else {
+
+          history.forEach(function(item, i, history) {
+            console.log( 'example ' + item.firstNumber + item.sign + item.secondNumber + ' of ' + item.type + ' is ' + item.correct );
+          });
+
+          var body = document.getElementsByTagName("body")[0]; // assuming it exists
+          var docfrag = document.createDocumentFragment();
+          
+
+          history.forEach(function(item, i) {
+            var li = document.createElement("li");
+            li.textContent = (i+1) + ' : ' + item.type + ' is ' + item.correct;
+            docfrag.appendChild(li);
+          });
+
+          body.appendChild(docfrag);
+
             }
-        this.className = newClass.replace(/^\s+|\s+$/g, ' ');
-        }
-        return this;
-    };
+
+
+      } else {
+        alert('Please enter the answer')
+      }
+
+    }
+
+    this.inputAnswer.onkeypress = function(evt) {
+      var theEvent = evt || window.event;
+      var key = theEvent.keyCode || theEvent.which;
+
+      key = String.fromCharCode( key );
+      var regex = /[0-9]/;
+      if( !regex.test(key) ) {
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+      }
+    }
+
+
   }
-};
+
+
+}
+
 app.init();

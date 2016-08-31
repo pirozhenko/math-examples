@@ -9,11 +9,11 @@
 <body>
 
 	<ul class="tabs" data-tabs id="example-tabs">
-		  <li class="tabs-title is-active js-title-tabs1">
-		  	<a href="#panel1">Установка</a>
+		  <li class="tabs-title is-active">
+		  	<a href="#panel1" class="js-title-tabs1">Установка</a>
 		  </li>
-		  <li class="tabs-title js-title-tabs2">
-		  	<a href="#panel2">Проверка</a>
+		  <li class="tabs-title">
+		  	<a href="#panel2" class="js-title-tabs2">Проверка</a>
 		  </li>
 	</ul>
 
@@ -21,48 +21,66 @@
 	<div class="tabs-content" data-tabs-content="example-tabs">
 
 	  <div class="tabs-panel is-active js-tabs1" id="panel1">
-	    <label>Сложение
-	    	<input type="checkbox" class="js-add">
+
+
+	    <label>
+	    	<input type="checkbox" class="js-exampleType" value="addition">
+	    	Сложение
+      </label>
+
+	    <label>
+	    	<input type="checkbox" class="js-exampleType" value="subtraction">
+	    	Вычитание
 	    </label>
 
-	    <label>Вычитание
-	    	<input type="checkbox" class="js-sub">
+	    <label>
+	    	<input type="checkbox" class="js-exampleType" value="multiplication">
+	    	Умножение
 	    </label>
 
-	    <label>Умножение
-	    	<input type="checkbox" class="js-mult">
+	    <label>
+	    	<input type="checkbox" class="js-exampleType" value="division">
+	    	Деление
 	    </label>
 
-	    <label>Деление
-	    	<input type="checkbox" class="js-dev">
-	    </label>
 	    <label>Колличество примеров
 				<input type="number" min="5" max="100" value="5" step="5" class="js-count-examples">
-	    </label>
-	    <button class="success button js-btn">Нажми на меня</button>
+   		</label>
+
+
 	  </div>
 
 
 	  <div class="tabs-panel js-tabs2" id="panel2">
-	    <div class="tabs__panel-example js-panel-example"></div>
-	    <input type="tel" class="js-panel-input-answer" placeholder="Введите Ваш ответ">
 
-	    <div class="tabs__panel-answer js-panel-answer"></div>
 
-	    <div class="tabs__panel-true js-panel-true"></div>
-	    <div class="tabs__panel-false js-panel-false"></div>
+			<button class="button js-generate" >Generate first</button>
+	    <button class="button js-next" >Show Next</button>
+	    <div class="js-panel-example"></div>
+	    <input type="text" class="js-answerField">
+	    <hr>
+	    <div class="js-answerFieldView"></div>
+	    <div>
+	        Correct: <span class="js-correctCount">0</span>
+	    </div>
+	    <div>
+	        Incorrect: <span class="js-incorrectCount">0</span>
+	    </div>
+
+	    
+
+
+
 	  </div>
 </div>
 <!--  -->
 	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write("<script src='js/vendor/jquery-1.12.0.min.js'><\/script>")</script>
 
 
     <script src="/assets/js/foundation/foundation.core.js"></script>
     <script src="/assets/js/foundation/foundation.util.mediaQuery.js"></script>
-    <!-- <script src="/assets/js/foundation/foundation.util.box.js"></script> -->
     <script src="/assets/js/foundation/foundation.util.keyboard.js"></script>
-    <!-- <script src="/assets/js/foundation/foundation.util.motion.js"></script> -->
     <script src="/assets/js/foundation/foundation.util.timerAndImageLoader.js"></script>
     <script src="/assets/js/foundation/foundation.tabs.js"></script>
     <script src="/assets/js/foundation/foundation.tooltip.js"></script>
