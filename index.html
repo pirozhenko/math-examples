@@ -1,94 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>softengi</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./dist/assets/css/main.css">
+  <meta charset="UTF-8">
+  <title>softengi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dist/assets/css/main.css">
 </head>
 <body>
 
-	<ul class="tabs" data-tabs id="example-tabs">
-		  <li class="tabs-title is-active">
-		  	<a href="#panel1" class="js-title-tabs1">Установка</a>
-		  </li>
-		  <li class="tabs-title">
-		  	<a href="#panel2" class="js-title-tabs2">Проверка</a>
-		  </li>
-	</ul>
+  <ul class="tabs" data-tabs id="example-tabs">
+      <li class="tabs-title is-active">
+        <a href="#panel1" class="js-title-tabs1">Установка</a>
+      </li>
+      <li class="tabs-title">
+        <a href="#panel2" class="js-title-tabs2">Проверка</a>
+      </li>
+  </ul>
 
 
-	<div class="tabs-content" data-tabs-content="example-tabs">
+  <div class="tabs-content" data-tabs-content="example-tabs">
 
-	  <div class="tabs-panel is-active js-tabs1" id="panel1">
+    <div class="tabs-panel is-active js-tabs1" id="panel1">
 
 
-	    <label>
-	    	<input type="checkbox" class="js-exampleType" value="addition">
-	    	Сложение
+      <label>
+        <input type="checkbox" class="js-exampleType" value="addition">
+        Сложение
       </label>
 
-	    <label>
-	    	<input type="checkbox" class="js-exampleType" value="subtraction">
-	    	Вычитание
-	    </label>
+      <label>
+        <input type="checkbox" class="js-exampleType" value="subtraction">
+        Вычитание
+      </label>
 
-	    <label>
-	    	<input type="checkbox" class="js-exampleType" value="multiplication">
-	    	Умножение
-	    </label>
+      <label>
+        <input type="checkbox" class="js-exampleType" value="multiplication">
+        Умножение
+      </label>
 
-	    <label>
-	    	<input type="checkbox" class="js-exampleType" value="division">
-	    	Деление
-	    </label>
+      <label>
+        <input type="checkbox" class="js-exampleType" value="division">
+        Деление
+      </label>
 
-	    <label>Колличество примеров
-				<input type="number" min="5" max="100" value="5" step="5" class="js-count-examples">
-   		</label>
-
-
-	  </div>
+      <label>Колличество примеров
+        <input type="number" min="5" max="100" value="5" step="5" class="js-count-examples">
+      </label>
 
 
-	  <div class="tabs-panel js-tabs2" id="panel2">
+    </div>
 
 
-			<button class="button js-generate" >Generate first</button>
-	    <button class="button js-next" >Show Next</button>
-	    <div class="js-panel-example"></div>
-	    <input type="text" class="js-answerField">
-	    <hr>
-	    <div class="js-answerFieldView"></div>
-	    <div>
-	        Correct: <span class="js-correctCount">0</span>
-	    </div>
-	    <div>
-	        Incorrect: <span class="js-incorrectCount">0</span>
-	    </div>
-
-	    
+    <div class="tabs-panel js-tabs2" id="panel2">
 
 
+      <button class="button js-generate" >Generate first</button>
+      <button class="button js-next" >Show Next</button>
+      <div class="js-panel-example"></div>
+      <input type="text" class="js-answerField">
+      <hr>
+      <div class="js-answerFieldView"></div>
+      <div>
+          Correct: <span class="js-correctCount">0</span>
+      </div>
+      <div>
+          Incorrect: <span class="js-incorrectCount">0</span>
+      </div>
 
-	  </div>
+      
+
+
+
+    </div>
 </div>
 <!--  -->
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>window.jQuery || document.write("<script src='js/vendor/jquery-1.12.0.min.js'><\/script>")</script>
 
 
-    <script src="/assets/js/foundation/foundation.core.js"></script>
-    <script src="/assets/js/foundation/foundation.util.mediaQuery.js"></script>
-    <script src="/assets/js/foundation/foundation.util.keyboard.js"></script>
-    <script src="/assets/js/foundation/foundation.util.timerAndImageLoader.js"></script>
-    <script src="/assets/js/foundation/foundation.tabs.js"></script>
-    <script src="/assets/js/foundation/foundation.tooltip.js"></script>
+    <script src="assets/js/foundation/foundation.core.js"></script>
+    <script src="assets/js/foundation/foundation.util.mediaQuery.js"></script>
+    <script src="assets/js/foundation/foundation.util.keyboard.js"></script>
+    <script src="assets/js/foundation/foundation.util.timerAndImageLoader.js"></script>
+    <script src="assets/js/foundation/foundation.tabs.js"></script>
+    <script src="assets/js/foundation/foundation.tooltip.js"></script>
     <script>
-    	$(document).foundation();
+      $(document).foundation();
     </script>
-	<script src="/assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 </<body>
-	
+  
 </body>
 </html>
